@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/item_model.dart';
 import '../providers/auth_provider.dart';
 import '../providers/item_provider.dart';
+import 'products/product_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -280,6 +281,17 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         actions: [
+          IconButton(
+            key: const Key('appbar_catalog_button'),
+            icon: const Icon(Icons.shopping_bag_outlined),
+            tooltip: 'Katalog Produk Grosir',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProductListScreen()),
+              );
+            },
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Chip(
@@ -381,6 +393,131 @@ class HomeScreen extends StatelessWidget {
                           onPressed: () => itemProvider.subscribeToItems(),
                         ),
                       ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+
+                // Akses Cepat Katalog Produk Grosir (DummyJSON REST API)
+                Card(
+                  elevation: 0,
+                  color: theme.colorScheme.secondaryContainer.withValues(
+                    alpha: 0.45,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    side: BorderSide(
+                      color: theme.colorScheme.secondary.withValues(alpha: 0.2),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isCompact = constraints.maxWidth < 600;
+                        if (isCompact) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor:
+                                        theme.colorScheme.secondaryContainer,
+                                    child: Icon(
+                                      Icons.storefront_outlined,
+                                      size: 20,
+                                      color: theme
+                                          .colorScheme
+                                          .onSecondaryContainer,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Text(
+                                      'Katalog Produk Grosir',
+                                      style: theme.textTheme.titleSmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Telusuri referensi harga dan stok produk eksternal dari DummyJSON REST API.',
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              FilledButton.icon(
+                                key: const Key('home_catalog_button'),
+                                icon: const Icon(Icons.arrow_forward, size: 16),
+                                label: const Text('Buka Katalog Produk'),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const ProductListScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        }
+
+                        return Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 22,
+                              backgroundColor:
+                                  theme.colorScheme.secondaryContainer,
+                              child: Icon(
+                                Icons.storefront_outlined,
+                                color: theme.colorScheme.onSecondaryContainer,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Katalog Produk Grosir',
+                                    style: theme.textTheme.titleSmall?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Telusuri referensi harga dan stok produk eksternal dari DummyJSON REST API.',
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: theme.colorScheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            FilledButton.icon(
+                              key: const Key('home_catalog_button'),
+                              icon: const Icon(Icons.arrow_forward, size: 16),
+                              label: const Text('Buka Katalog Produk'),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const ProductListScreen(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ),

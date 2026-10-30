@@ -11,6 +11,7 @@ import 'package:warung_stock/providers/api_provider.dart';
 import 'package:warung_stock/screens/auth/login_screen.dart';
 import 'package:warung_stock/screens/auth/register_screen.dart';
 import 'package:warung_stock/screens/home_screen.dart';
+import 'package:warung_stock/screens/products/product_list_screen.dart';
 
 /// Fake AuthProvider untuk keperluan testing tanpa ketergantungan Firebase sungguhan.
 class FakeAuthProvider extends ChangeNotifier implements AuthProvider {
@@ -475,6 +476,37 @@ void main() {
       expect(find.text('Stok tidak boleh kosong'), findsOneWidget);
       expect(find.text('Harga tidak boleh kosong'), findsOneWidget);
     });
+
+    testWidgets(
+      'HomeScreen menampilkan akses katalog dan navigasi ke ProductListScreen berhasil',
+      (WidgetTester tester) async {
+        final fakeAuth = FakeAuthProvider(
+          initialUser: _createMockUser('warung@example.com'),
+        );
+        final fakeItem = FakeItemProvider(
+          initialItems: [],
+          initialState: ItemViewState.empty,
+        );
+
+        await tester.pumpWidget(
+          createTestableWidget(
+            authProvider: fakeAuth,
+            itemProvider: fakeItem,
+            child: const HomeScreen(),
+          ),
+        );
+
+        expect(find.text('Katalog Produk Grosir'), findsOneWidget);
+        expect(find.byKey(const Key('home_catalog_button')), findsOneWidget);
+        expect(find.byKey(const Key('appbar_catalog_button')), findsOneWidget);
+
+        await tester.tap(find.byKey(const Key('home_catalog_button')));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ProductListScreen), findsOneWidget);
+        expect(find.text('Katalog Produk Grosir'), findsOneWidget);
+      },
+    );
   });
 }
 
