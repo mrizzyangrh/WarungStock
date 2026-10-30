@@ -7,6 +7,7 @@ import 'package:warung_stock/main.dart';
 import 'package:warung_stock/models/item_model.dart';
 import 'package:warung_stock/providers/auth_provider.dart';
 import 'package:warung_stock/providers/item_provider.dart';
+import 'package:warung_stock/providers/api_provider.dart';
 import 'package:warung_stock/screens/auth/login_screen.dart';
 import 'package:warung_stock/screens/auth/register_screen.dart';
 import 'package:warung_stock/screens/home_screen.dart';
@@ -201,12 +202,16 @@ Widget createTestableWidget({
   required Widget child,
   required AuthProvider authProvider,
   ItemProvider? itemProvider,
+  ApiProvider? apiProvider,
 }) {
   return MultiProvider(
     providers: [
       ChangeNotifierProvider<AuthProvider>.value(value: authProvider),
       ChangeNotifierProvider<ItemProvider>.value(
         value: itemProvider ?? FakeItemProvider(),
+      ),
+      ChangeNotifierProvider<ApiProvider>.value(
+        value: apiProvider ?? ApiProvider(),
       ),
     ],
     child: MaterialApp(home: child),

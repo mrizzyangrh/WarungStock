@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
 import 'providers/item_provider.dart';
+import 'providers/api_provider.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/home_screen.dart';
 
@@ -36,6 +37,7 @@ class WarungStockApp extends StatelessWidget {
   final String? initErrorMessage;
   final AuthProvider? authProvider;
   final ItemProvider? itemProvider;
+  final ApiProvider? apiProvider;
 
   const WarungStockApp({
     super.key,
@@ -43,6 +45,7 @@ class WarungStockApp extends StatelessWidget {
     this.initErrorMessage,
     this.authProvider,
     this.itemProvider,
+    this.apiProvider,
   });
 
   @override
@@ -60,6 +63,9 @@ class WarungStockApp extends StatelessWidget {
             provider.updateUser(auth.user?.uid);
             return provider;
           },
+        ),
+        ChangeNotifierProvider<ApiProvider>(
+          create: (_) => apiProvider ?? ApiProvider(),
         ),
       ],
       child: MaterialApp(
