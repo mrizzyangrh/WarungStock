@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
+import 'providers/item_provider.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/home_screen.dart';
 
@@ -34,12 +35,14 @@ class WarungStockApp extends StatelessWidget {
   final bool firebaseInitialized;
   final String? initErrorMessage;
   final AuthProvider? authProvider;
+  final ItemProvider? itemProvider;
 
   const WarungStockApp({
     super.key,
     this.firebaseInitialized = true,
     this.initErrorMessage,
     this.authProvider,
+    this.itemProvider,
   });
 
   @override
@@ -48,6 +51,15 @@ class WarungStockApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AuthProvider>(
           create: (_) => authProvider ?? AuthProvider(),
+        ),
+        ChangeNotifierProxyProvider<AuthProvider, ItemProvider>(
+          create: (_) => itemProvider ?? ItemProvider(),
+          update: (_, auth, item) {
+            final provider = item ?? itemProvider ?? ItemProvider();
+            // Menghubungkan sesi autentikasi pengguna ke isolasi inventaris Firestore
+            provider.updateUser(auth.user?.uid);
+            return provider;
+          },
         ),
       ],
       child: MaterialApp(
