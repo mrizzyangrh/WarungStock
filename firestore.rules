@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions untuk validasi keamanan dan integritas data inventaris
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function hasValidItemFields() {
+      let data = request.resource.data;
+      return data.keys().hasOnly(['name', 'stock', 'price', 'createdAt', 'updatedAt'])
+        && data.name is string
+        && data.name.trim().size() > 0
+        && data.name.size() <= 100
+        && data.stock is int
+        && data.stock >= 0
+        && (data.price is int || data.price is float)
+        && data.price > 0
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Path inventaris: users/{userId}/items/{itemId}
+    // Menjamin isolasi data multi-pengguna berdasarkan UID
+    match /users/{userId}/items/{itemId} {
+      // Membaca dokumen atau koleksi inventaris hanya diperbolehkan untuk pemilik data
+      allow read: if isOwner(userId);
+
+      // Menambahkan barang baru: wajib pemilik data dan memenuhi skema validasi
+      allow create: if isOwner(userId)
+                    && hasValidItemFields();
+
+      // Memperbarui barang: wajib pemilik data, skema valid, dan createdAt tidak boleh diubah
+      allow update: if isOwner(userId)
+                    && hasValidItemFields()
+                    && request.resource.data.createdAt == resource.data.createdAt;
+
+      // Menghapus barang: hanya diperbolehkan untuk pemilik data
+      allow delete: if isOwner(userId);
+    }
+
+    // Menolak semua akses ke koleksi/dokumen lain secara default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
