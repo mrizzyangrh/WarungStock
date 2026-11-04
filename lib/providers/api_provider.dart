@@ -5,7 +5,7 @@ import '../services/api_service.dart';
 /// State representasi status siklus hidup permintaan REST API.
 enum ApiViewState { initial, loading, loaded, empty, error }
 
-/// Provider pengelola state untuk integrasi REST API DummyJSON.
+/// Provider pengelola state untuk integrasi REST API DummyJSON kategori sembako (groceries).
 class ApiProvider extends ChangeNotifier {
   final ApiService _apiService;
 
@@ -33,7 +33,7 @@ class ApiProvider extends ChangeNotifier {
   bool get isError => _state == ApiViewState.error;
   bool get isDetailLoading => _detailState == ApiViewState.loading;
 
-  /// Mengambil daftar katalog produk dari API DummyJSON.
+  /// Mengambil daftar katalog produk sembako (groceries) dari API DummyJSON.
   /// Parameter [forceRefresh] digunakan jika ingin memaksa request ulang meskipun data sudah ada.
   Future<void> fetchProducts({bool forceRefresh = false}) async {
     // Hindari request berulang jika data sudah ada dan tidak dipaksa refresh

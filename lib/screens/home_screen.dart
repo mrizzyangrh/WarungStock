@@ -284,7 +284,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             key: const Key('appbar_catalog_button'),
             icon: const Icon(Icons.shopping_bag_outlined),
-            tooltip: 'Katalog Produk Grosir',
+            tooltip: 'Katalog Produk Sembako',
             onPressed: () {
               Navigator.push(
                 context,
@@ -398,7 +398,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
 
-                // Akses Cepat Katalog Produk Grosir (DummyJSON REST API)
+                // Akses Cepat Katalog Produk Sembako (DummyJSON REST API)
                 Card(
                   elevation: 0,
                   color: theme.colorScheme.secondaryContainer.withValues(
@@ -436,7 +436,7 @@ class HomeScreen extends StatelessWidget {
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Text(
-                                      'Katalog Produk Grosir',
+                                      'Katalog Produk Sembako',
                                       style: theme.textTheme.titleSmall
                                           ?.copyWith(
                                             fontWeight: FontWeight.bold,
@@ -447,7 +447,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                'Telusuri referensi harga dan stok produk eksternal dari DummyJSON REST API.',
+                                'Telusuri referensi harga dan stok produk sembako dari DummyJSON REST API.',
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: theme.colorScheme.onSurfaceVariant,
                                 ),
@@ -487,13 +487,13 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Katalog Produk Grosir',
+                                    'Katalog Produk Sembako',
                                     style: theme.textTheme.titleSmall?.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
-                                    'Telusuri referensi harga dan stok produk eksternal dari DummyJSON REST API.',
+                                    'Telusuri referensi harga dan stok produk sembako dari DummyJSON REST API.',
                                     style: theme.textTheme.bodySmall?.copyWith(
                                       color: theme.colorScheme.onSurfaceVariant,
                                     ),

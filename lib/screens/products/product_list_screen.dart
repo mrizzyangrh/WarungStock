@@ -5,7 +5,7 @@ import '../../providers/api_provider.dart';
 import '../../widgets/product_card.dart';
 import 'product_detail_screen.dart';
 
-/// Halaman katalog produk grosir eksternal dari DummyJSON.
+/// Halaman katalog produk sembako (groceries) dari DummyJSON.
 class ProductListScreen extends StatefulWidget {
   final ValueChanged<ProductModel>? onProductTap;
 
@@ -38,7 +38,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             Icon(Icons.inventory_2_outlined),
             SizedBox(width: 8),
             Text(
-              'Katalog Produk Grosir',
+              'Katalog Produk Sembako',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
@@ -74,7 +74,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             const CircularProgressIndicator(),
             const SizedBox(height: 16),
             Text(
-              'Memuat katalog produk grosir...',
+              'Memuat katalog produk sembako...',
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -156,7 +156,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Tidak ada produk yang tersedia dari server DummyJSON saat ini.',
+                'Tidak ada produk sembako yang tersedia dari server DummyJSON saat ini.',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
@@ -192,7 +192,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 ),
               ),
               Text(
-                'Sumber: DummyJSON API',
+                'Sumber: DummyJSON Groceries',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: Colors.teal.shade700,
                   fontWeight: FontWeight.w600,

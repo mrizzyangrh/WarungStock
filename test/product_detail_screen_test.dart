@@ -32,7 +32,7 @@ Dio _createMockDio({
                     'description':
                         'Beras pulen berkualitas super asli Cianjur.',
                     'category': 'groceries',
-                    'price': 72000.0,
+                    'price': 7.20,
                     'discountPercentage': 10.0,
                     'rating': 4.8,
                     'stock': 35,
@@ -45,7 +45,8 @@ Dio _createMockDio({
                   },
             ),
           );
-        } else if (options.path == '/products') {
+        } else if (options.path == ApiService.groceriesCategoryPath ||
+            options.path == '/products') {
           return handler.resolve(
             Response(
               requestOptions: options,
@@ -57,7 +58,7 @@ Dio _createMockDio({
                       {
                         'id': 1,
                         'title': 'Beras Premium Ramos 5kg',
-                        'price': 72000.0,
+                        'price': 7.20,
                         'stock': 35,
                       },
                     ],
@@ -117,7 +118,7 @@ void main() {
       expect(find.text('GROCERIES'), findsOneWidget);
 
       // Harga, Diskon, Rating, Stok
-      expect(find.text('Rp 72000'), findsOneWidget);
+      expect(find.text('\$ 7.20'), findsOneWidget);
       expect(find.text('-10%'), findsOneWidget);
       expect(find.text('4.8 / 5.0'), findsOneWidget);
       expect(find.text('Stok: 35 unit'), findsOneWidget);

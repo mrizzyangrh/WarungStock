@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/product_model.dart';
 
-/// Kartu tampilan produk katalog DummyJSON.
+/// Kartu tampilan produk katalog sembako (groceries) DummyJSON.
 class ProductCard extends StatelessWidget {
   final ProductModel product;
   final ValueChanged<ProductModel>? onProductTap;
@@ -149,9 +149,9 @@ class ProductCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Harga produk
+                        // Harga produk (USD)
                         Text(
-                          'Rp ${product.price.toStringAsFixed(0)}',
+                          '\$ ${product.price.toStringAsFixed(2)}',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,

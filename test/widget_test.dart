@@ -496,7 +496,7 @@ void main() {
           ),
         );
 
-        expect(find.text('Katalog Produk Grosir'), findsOneWidget);
+        expect(find.text('Katalog Produk Sembako'), findsOneWidget);
         expect(find.byKey(const Key('home_catalog_button')), findsOneWidget);
         expect(find.byKey(const Key('appbar_catalog_button')), findsOneWidget);
 
@@ -504,7 +504,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(ProductListScreen), findsOneWidget);
-        expect(find.text('Katalog Produk Grosir'), findsOneWidget);
+        expect(find.text('Katalog Produk Sembako'), findsOneWidget);
       },
     );
   });

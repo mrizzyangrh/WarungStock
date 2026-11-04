@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../models/product_model.dart';
 import '../../providers/api_provider.dart';
 
-/// Halaman detail produk dari DummyJSON.
+/// Halaman detail produk sembako (groceries) dari DummyJSON.
 class ProductDetailScreen extends StatefulWidget {
   final int productId;
 
@@ -418,7 +418,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Harga Grosir:',
+                  'Harga Referensi (USD):',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -430,7 +430,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     Text(
-                      'Rp ${product.price.toStringAsFixed(0)}',
+                      '\$ ${product.price.toStringAsFixed(2)}',
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.teal.shade800,
@@ -456,7 +456,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                       ),
                       Text(
-                        'Rp ${originalPrice.toStringAsFixed(0)}',
+                        '\$ ${originalPrice.toStringAsFixed(2)}',
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: theme.colorScheme.outline,

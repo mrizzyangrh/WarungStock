@@ -3,10 +3,18 @@ import '../models/product_model.dart';
 
 /// Layanan komunikasi REST API ke DummyJSON menggunakan Dio.
 /// Base URL: `https://dummyjson.com`
+///
+/// Katalog yang ditampilkan adalah produk kategori groceries (sembako).
+/// Endpoint daftar: `GET /products/category/groceries`
+/// Endpoint detail: `GET /products/{id}`
 class ApiService {
   final Dio _dio;
 
   static const String defaultBaseUrl = 'https://dummyjson.com';
+
+  /// Path kategori produk sembako/groceries.
+  static const String groceriesCategoryPath = '/products/category/groceries';
+
   static const Duration defaultConnectTimeout = Duration(seconds: 10);
   static const Duration defaultReceiveTimeout = Duration(seconds: 10);
 
@@ -25,12 +33,15 @@ class ApiService {
             ),
           );
 
-  /// Mengambil daftar semua produk dari DummyJSON.
-  /// Endpoint: `GET /products`
-  Future<List<ProductModel>> getProducts({int limit = 30, int skip = 0}) async {
+  /// Mengambil seluruh produk kategori sembako/groceries dari DummyJSON.
+  /// Endpoint: `GET /products/category/groceries`
+  ///
+  /// Menggunakan `limit=0` untuk mengambil semua produk groceries sekaligus
+  /// (total ±20 produk). Parameter [skip] tetap tersedia untuk fleksibilitas.
+  Future<List<ProductModel>> getProducts({int limit = 0, int skip = 0}) async {
     try {
       final response = await _dio.get(
-        '/products',
+        groceriesCategoryPath,
         queryParameters: {'limit': limit, 'skip': skip},
       );
 

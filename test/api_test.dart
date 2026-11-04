@@ -6,7 +6,7 @@ import 'package:warung_stock/services/api_service.dart';
 
 void main() {
   group('ProductModel Unit Tests', () {
-    test('fromJson berhasil mem-parsing data lengkap dari DummyJSON', () {
+    test('fromJson berhasil mem-parsing data lengkap dari DummyJSON groceries', () {
       final json = {
         'id': 1,
         'title': 'Beras Premium 5kg',
@@ -98,7 +98,43 @@ void main() {
 
   group('ApiService Dio Mock Tests', () {
     test(
-      'getProducts berhasil mem-parsing list produk dari respons 200',
+      'getProducts menggunakan endpoint kategori groceries yang benar',
+      () async {
+        String? capturedPath;
+        final dio = Dio();
+        dio.interceptors.add(
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              capturedPath = options.path;
+              return handler.resolve(
+                Response(
+                  requestOptions: options,
+                  statusCode: 200,
+                  data: {
+                    'products': <Map<String, dynamic>>[],
+                    'total': 0,
+                    'skip': 0,
+                    'limit': 0,
+                  },
+                ),
+              );
+            },
+          ),
+        );
+
+        final apiService = ApiService(dio: dio);
+        await apiService.getProducts();
+
+        expect(
+          capturedPath,
+          ApiService.groceriesCategoryPath,
+          reason: 'Endpoint harus mengarah ke /products/category/groceries',
+        );
+      },
+    );
+
+    test(
+      'getProducts berhasil mem-parsing list produk groceries dari respons 200',
       () async {
         final dio = Dio();
         dio.interceptors.add(
@@ -113,21 +149,21 @@ void main() {
                       {
                         'id': 1,
                         'title': 'Kopi Kapal Api',
-                        'price': 3500.0,
+                        'price': 3.50,
                         'stock': 50,
-                        'category': 'beverages',
+                        'category': 'groceries',
                       },
                       {
                         'id': 2,
                         'title': 'Teh Celup',
-                        'price': 6000.0,
+                        'price': 2.99,
                         'stock': 30,
-                        'category': 'beverages',
+                        'category': 'groceries',
                       },
                     ],
                     'total': 2,
                     'skip': 0,
-                    'limit': 30,
+                    'limit': 0,
                   },
                 ),
               );
@@ -393,7 +429,7 @@ void main() {
         dio.interceptors.add(
           InterceptorsWrapper(
             onRequest: (options, handler) {
-              if (options.path == '/products') {
+              if (options.path == '/products/category/groceries') {
                 return handler.resolve(
                   Response(
                     requestOptions: options,

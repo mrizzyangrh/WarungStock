@@ -46,7 +46,7 @@ Widget _wrapWithProvider(
 
 void main() {
   group('ProductListScreen Widget Tests', () {
-    testWidgets('Menampilkan AppBar dengan judul Katalog Produk Grosir', (
+    testWidgets('Menampilkan AppBar dengan judul Katalog Produk Sembako', (
       WidgetTester tester,
     ) async {
       final dio = _createMockDio(responseData: {'products': []});
@@ -55,7 +55,7 @@ void main() {
       await tester.pumpWidget(_wrapWithProvider(provider));
       await tester.pumpAndSettle();
 
-      expect(find.text('Katalog Produk Grosir'), findsOneWidget);
+      expect(find.text('Katalog Produk Sembako'), findsOneWidget);
       expect(find.byKey(const Key('refresh_catalog_button')), findsOneWidget);
     });
 
@@ -86,7 +86,7 @@ void main() {
               'id': 1,
               'title': 'Beras Super 5kg',
               'category': 'groceries',
-              'price': 68000.0,
+              'price': 6.80,
               'discountPercentage': 5.0,
               'rating': 4.8,
               'stock': 30,
@@ -96,7 +96,7 @@ void main() {
               'id': 2,
               'title': 'Gula Pasir 1kg',
               'category': 'groceries',
-              'price': 17500.0,
+              'price': 1.75,
               'discountPercentage': 0.0,
               'rating': 4.9,
               'stock': 45,
@@ -113,8 +113,8 @@ void main() {
       expect(find.text('Daftar Produk (2 barang)'), findsOneWidget);
       expect(find.text('Beras Super 5kg'), findsOneWidget);
       expect(find.text('Gula Pasir 1kg'), findsOneWidget);
-      expect(find.text('Rp 68000'), findsOneWidget);
-      expect(find.text('Rp 17500'), findsOneWidget);
+      expect(find.text('\$ 6.80'), findsOneWidget);
+      expect(find.text('\$ 1.75'), findsOneWidget);
       expect(find.byType(ProductCard), findsNWidgets(2));
     });
 
@@ -123,7 +123,7 @@ void main() {
       (WidgetTester tester) async {
         final dio = _createMockDio(
           errorToThrow: DioException(
-            requestOptions: RequestOptions(path: '/products'),
+            requestOptions: RequestOptions(path: ApiService.groceriesCategoryPath),
             type: DioExceptionType.connectionError,
             message: 'Koneksi internet bermasalah',
           ),
