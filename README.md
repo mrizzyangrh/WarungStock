@@ -294,7 +294,7 @@ Direktori penyimpanan aset tangkapan layar tersedia di `docs/screenshots/`.
 Sebagai bagian dari persyaratan penyerahan tugas UTS PMP, video rekaman demonstrasi yang menjelaskan arsitektur aplikasi, autentikasi, Firestore CRUD real-time, integrasi Dio REST API, serta komparasi Future vs Stream dapat diakses pada tautan berikut:
 
 - **Tautan Video Demonstrasi (Google Drive):**
-  `[Link Google Drive Video Demonstrasi UTS PMP — Silakan Isi Tautan Resmi Di Sini]`
+  `[https://drive.google.com/file/d/1XGr9I37pRHUmMyCjnhZlawSUJHDkj_VE/view?usp=sharing]`
 
 ---
 
