@@ -262,32 +262,29 @@ firebase deploy --only firestore:rules
 4. Tempel ke editor aturan Firebase Console, lalu klik **Publish**.
 
 ---
-
 ## 11. Tangkapan Layar Aplikasi (Screenshots)
 
-Direktori penyimpanan aset tangkapan layar tersedia di `docs/screenshots/`.
+Seluruh dokumentasi visual aplikasi disimpan dalam direktori `docs/screenshots/`.
 
 ### 1. Halaman Masuk & Pendaftaran Akun
 
-|                       Halaman Masuk (Login)                        |                    Halaman Pendaftaran (Register)                     |
-| :----------------------------------------------------------------: | :-------------------------------------------------------------------: |
-| _(Screenshot Placeholder: `docs/screenshots/01_login_screen.png`)_ | _(Screenshot Placeholder: `docs/screenshots/02_register_screen.png`)_ |
+| Halaman Masuk (Login) | Halaman Pendaftaran (Register) |
+|:---:|:---:|
+| ![Login Screen](docs/screenshots/01_login_screen.png) | ![Register Screen](docs/screenshots/02_register_screen.png) |
 
 ### 2. Beranda Inventaris Warung (Firestore CRUD)
 
-|                      Tampilan Daftar Stok & Dashboard                       |                      Dialog Tambah / Ubah Barang                      |
-| :-------------------------------------------------------------------------: | :-------------------------------------------------------------------: |
-| _(Screenshot Placeholder: `docs/screenshots/03_home_inventory_screen.png`)_ | _(Screenshot Placeholder: `docs/screenshots/04_add_item_dialog.png`)_ |
+| Dashboard & Daftar Stok | Dialog Tambah / Ubah Barang |
+|:---:|:---:|
+| ![Home Inventory](docs/screenshots/03_home_inventory_screen.png) | ![Add Item Dialog](docs/screenshots/04_add_item_dialog.png) |
 
 ### 3. Katalog & Detail Produk Grosir (DummyJSON REST API)
 
-|                            Katalog Produk Grosir                             |                           Detail & Galeri Produk                            |
-| :--------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
-| _(Screenshot Placeholder: `docs/screenshots/05_product_catalog_screen.png`)_ | _(Screenshot Placeholder: `docs/screenshots/06_product_detail_screen.png`)_ |
+| Katalog Produk Grosir | Detail & Galeri Produk |
+|:---:|:---:|
+| ![Product Catalog](docs/screenshots/05_product_catalog_screen.png) | ![Product Detail](docs/screenshots/06_product_detail_screen.png) |
 
-> **Petunjuk:** Jalankan aplikasi web di Google Chrome, ambil tangkapan layar antarmuka asli pada keenam kondisi di atas, simpan pada folder `docs/screenshots/`, lalu tautkan file gambarnya pada tabel di atas sebelum penyerahan final.
-
----
+**Catatan:** Pastikan keenam file screenshot sudah tersedia di direktori `docs/screenshots/` sebelum melakukan push ke GitHub.
 
 ## 12. Video Demonstrasi Aplikasi
 
