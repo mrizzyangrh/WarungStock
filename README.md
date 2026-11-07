@@ -291,8 +291,8 @@ Seluruh dokumentasi visual aplikasi disimpan dalam direktori `docs/screenshots/`
 Sebagai bagian dari persyaratan penyerahan tugas UTS PMP, video rekaman demonstrasi yang menjelaskan arsitektur aplikasi, autentikasi, Firestore CRUD real-time, integrasi Dio REST API, serta komparasi Future vs Stream dapat diakses pada tautan berikut:
 
 - **Tautan Video Demonstrasi (Google Drive):**
-  `[https://drive.google.com/file/d/1XGr9I37pRHUmMyCjnhZlawSUJHDkj_VE/view?usp=sharing]`
-
+ `https://drive.google.com/drive/folders/1ITve6wy97jDaaPmtI9iwAlt72rkSz8AS`
+ 
 ---
 
 ## 13. Informasi Pengumpulan Tugas UTS
